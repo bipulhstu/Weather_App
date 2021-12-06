@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cityListFragment"
-        android:name="com.bipulhstu.weatherapp.ui.fragment.CityListFragment"
+        android:name="com.bipulhstu.weatherapp.view.fragment.CityListFragment"
         android:label="Weather App"
         tools:layout="@layout/fragment_city_list">
         <action
@@ -22,8 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.bipulhstu.weatherapp.ui.fragment.MapsFragment"
-        android:label="fragment_maps"
+        android:name="com.bipulhstu.weatherapp.view.fragment.MapsFragment"
         tools:layout="@layout/fragment_maps">
         <argument
             android:name="city"
