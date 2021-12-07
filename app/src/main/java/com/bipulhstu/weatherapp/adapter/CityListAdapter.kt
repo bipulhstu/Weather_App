@@ -40,7 +40,7 @@ class CityListAdapter(
                 binding.cityName.text = this.name
                 binding.status.text = this.weather?.get(0)?.main
                 binding.temperature.text =
-                    (abs(this.main!!.temp - 273).toInt()).toString() + "\u00B0"+"c"
+                    (abs(this.main!!.temp - 273.15).toInt()).toString() + "\u00B0"+"c"
 
 
                 binding.mainCL.setOnClickListener {
