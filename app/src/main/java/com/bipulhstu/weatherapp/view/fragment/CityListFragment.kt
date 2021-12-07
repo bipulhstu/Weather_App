@@ -5,23 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bipulhstu.weatherapp.adapter.CityListAdapter
 import com.bipulhstu.weatherapp.databinding.FragmentCityListBinding
 import com.bipulhstu.weatherapp.model.City
-import com.bipulhstu.weatherapp.viewModel.CityListViewModel
+import com.bipulhstu.weatherapp.viewModel.WeatherViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class CityListFragment : Fragment() {
+    private val weatherViewModel: WeatherViewModel by viewModels()
     lateinit var binding: FragmentCityListBinding
-    lateinit var cityListViewModel: CityListViewModel
     lateinit var adapter: CityListAdapter
+    private var view2: View? = null
     lateinit var bundle: Bundle
 
-
-    private var view2: View? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,10 +32,9 @@ class CityListFragment : Fragment() {
             binding = FragmentCityListBinding.inflate(inflater, container, false)
             view2 = binding.root
 
-            cityListViewModel = ViewModelProvider(this)[CityListViewModel::class.java]
-            cityListViewModel.getCityList(23.68, 90.35, 50, "e384f9ac095b2109c751d95296f8ea76")
-
-            cityListViewModel.cityListLiveData.observe(viewLifecycleOwner, { response ->
+            //weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
+            weatherViewModel.getCityList(23.68, 90.35, 50, "e384f9ac095b2109c751d95296f8ea76")
+            weatherViewModel.cityListLiveData.observe(viewLifecycleOwner, { response ->
                 adapter = CityListAdapter(response.list)
                 binding.cityListRecyclerview.adapter = adapter
                 binding.cityListRecyclerview.layoutManager =
@@ -59,10 +59,6 @@ class CityListFragment : Fragment() {
             })
         }
 
-
-
         return view2 as View
     }
-
-
 }

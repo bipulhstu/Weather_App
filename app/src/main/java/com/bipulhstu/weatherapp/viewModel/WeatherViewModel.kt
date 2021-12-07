@@ -10,9 +10,10 @@ import com.bipulhstu.weatherapp.retrofit.ClientInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 
-class CityListViewModel : ViewModel() {
+class WeatherViewModel @Inject constructor(): ViewModel() {
 
     val cityListLiveData = MutableLiveData<CityListResponse>()
     val cityWeatherLiveData = MutableLiveData<CityWeatherResponse>()
